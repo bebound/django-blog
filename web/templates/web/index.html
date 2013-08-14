@@ -1,0 +1,91 @@
+{% extends "web/base.html" %}
+
+{% block Content %}
+    <div class="blog_list clearfix">
+        {% if postList %}
+            {% for post in postList %}
+                <div class="blog_teaser box">
+                    <p class="blog_date">{{ post.createTime|date:"d" }}<br/><span>{{ post.createTime|date:"M" }}</span>
+                    </p>
+
+                    <h3><a href="{% url "detailView" post.id %}">{{ post.title }}</a></h3>
+
+                    <div class="blog_teaser_bar">
+                        <p class="user"><a href="{% url "authorView" post.author.username %}"><span
+                                class="icon-user"></span>by {{ post.author.username }}</a></p>
+                        {% if post.tag %}
+                            <p class="tags"><span class="icon-tag"></span>
+                                {% for tag in post.tag.all %}
+                                    {% if forloop.first %}
+                                        <a href="{% url "tagView" tag %}">{{ tag.tag }}</a>
+                                    {% elif forloop.last %}
+                                        <a class="last" href="{% url "tagView" tag %}"><i
+                                                class="divis">-</i>{{ tag.tag }}</a>
+                                    {% else %}
+                                        <a href="{% url "tagView" tag %}"><i class="divis">-</i>{{ tag.tag }}</a>
+                                    {% endif %}
+                                {% endfor %}
+                            </p>
+                        {% endif %}
+                        {% comment %}
+                        <p class="comments"><span class="icon-comments"></span><a
+                                href="/en/blog/2013/07/03/django-cms-3-beta-2/#disqus_thread"
+                                data-disqus-identifier="idguid=blogpost-53">
+                        </a></p>
+                        {% endcomment %}
+                    </div>
+
+                    <p></p>
+
+                    <p>{{ post.excerpt }}</p>
+
+                    <p></p>
+                    <a href="{% url "detailView" post.id %}" title="Read more">Read more</a>
+                </div>
+            {% endfor %}
+        {% endif %}
+    </div>
+    <div class="page">
+        <div class="left">
+            {% comment %}{% ifnotequal curPage 1 %}
+                <a href="{% url "index" %}">First Page</a>
+            {% endifnotequal %}{% endcomment %}
+
+            {% ifnotequal prevPage -1 %}
+                {% ifequal prevPage 1 %}
+                    <a href="{% url "index" %}">Previous</a>
+                {% else %}
+                    <a href="{% url "indexPage" prevPage %}">Previous</a>
+                {% endifequal %}
+            {% endifnotequal %}
+        </div>
+
+
+        <div class="right">
+            {% ifnotequal nextPage -1 %}
+                <a href="{% url "indexPage" nextPage %}">Next</a>
+            {% endifnotequal %}
+
+            {% comment %}{% ifnotequal totalPage 1 %}
+                <a href="{% url "indexPage" totalPage %}">Last Page</a>
+            {% endifnotequal %}{% endcomment %}
+        </div>
+
+
+        <div class="align-center">
+            {% ifnotequal totalPage 1 %}
+                {% for page in pages %}
+                    {% ifnotequal page '...' %}
+                        {% ifequal page 1 %}
+                            <a href="{% url "index" %}">{{ page }}</a>
+                        {% else %}
+                            <a href="{% url "indexPage" page %}">{{ page }}</a>
+                        {% endifequal %}
+                    {% else %}
+                        <p>...</p>
+                    {% endifnotequal %}
+                {% endfor %}
+            {% endifnotequal %}
+        </div>
+    </div>
+{% endblock %}

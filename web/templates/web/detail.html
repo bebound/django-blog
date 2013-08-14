@@ -1,0 +1,49 @@
+{% extends "web/base.html" %}
+{% block Content %}
+    <div class="blog_detail clearfix">
+        <article class="blog_entry box">
+            <p class="blog_date">{{ post.createTime|date:"d" }}<br><span>{{ post.createTime|date:"M" }}</span></p>
+
+            <h3><a href="#">{{ post.title }}</a></h3>
+
+            <div class="blog_teaser_bar">
+
+                <p class="user"><a href="{% url "authorView" post.author.username %}"><span
+                        class="icon-user"></span>by {{ post.author.username }}</a></p>
+
+                {% if post.tag %}
+                    <p class="tags"><span class="icon-tag"></span>
+                        {% for tag in post.tag.all %}
+                            {% if forloop.first %}
+                                <a href="{% url "tagView" tag %}">{{ tag.tag }}</a>
+                            {% elif forloop.last %}
+                                <a class="last" href="{% url "tagView" tag %}"><i
+                                        class="divis">-</i>{{ tag.tag }}</a>
+                            {% else %}
+                                <a href="{% url "tagView" tag %}"><i class="divis">-</i>{{ tag.tag }}</a>
+                            {% endif %}
+                        {% endfor %}
+                    </p>
+                {% endif %}
+                {% comment %}
+    <p class="comments"><span class="icon-comments"></span><a
+            href="/en/blog/2013/07/03/django-cms-3-beta-2/#disqus_thread"
+            data-disqus-identifier="idguid=blogpost-53">
+    </a></p>
+    {% endcomment %}
+            </div>
+            {% autoescape off %}
+            {{ post.body }}
+            {% endautoescape %}
+        </article>
+    </div>
+{% endblock %}
+
+
+{% comment %}
+{% if post %}
+    <h1>{{ post.title }}</h1>
+
+{% else %}
+    <p>No post are available.</p>
+{% endif %}{% endcomment %}

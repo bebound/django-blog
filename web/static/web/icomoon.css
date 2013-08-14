@@ -1,0 +1,77 @@
+@font-face {
+    font-family: 'django-cms';
+    src: url('../web/font/django-cms.eot');
+    src: url('../web/font/django-cms.eot?#iefix') format('embedded-opentype'), url('../web/font/django-cms.svg#django-cms') format('svg'), url('../web/font/django-cms.woff') format('woff'), url('../web/font/django-cms.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* Use the following CSS code if you want to use data attributes for inserting your icons */
+[data-icon]:before {
+    font-family: 'django-cms';
+    content: attr(data-icon);
+    speak: none;
+    font-weight: normal;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* Use the following CSS code if you want to have a class per icon */
+[class^="icon-"]:before, [class*=" icon-"]:before {
+    font-family: 'django-cms';
+    font-style: normal;
+    speak: none;
+    font-weight: normal;
+    -webkit-font-smoothing: antialiased;
+}
+
+.icon-user:before {
+    content: "\36";
+}
+
+.icon-tag:before {
+    content: "\37";
+}
+
+.icon-comments:before {
+    content: "\38";
+}
+
+.icon-eye:before {
+    content: "\21";
+}
+
+.icon-star:before {
+    content: "\22";
+}
+
+.icon-star-2:before {
+    content: "\23";
+}
+
+.icon-arrow-up:before {
+    content: "\24";
+}
+
+.icon-arrow-right:before {
+    content: "\25";
+}
+
+.icon-arrow-down:before {
+    content: "\26";
+}
+
+.icon-arrow-left:before {
+    content: "\27";
+}
+
+.icon-cog:before {
+    content: "\28";
+}
+
+.icon-out:before {
+    content: "\29";
+}
+
+.icon-cancel:before {
+    content: "\2a";
+}

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="cleartype" content="on">
+    {# <title>{% block headTitle %}Test Blog{% endblock %}</title> #}
+    {% if headTitle %}
+        <title>{{ headTitle }}</title>
+    {% endif %}
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    {% load staticfiles %}
+    <link rel="shortcut icon" href="{% static 'web/img/favicon.ico' %}">
+    <link rel="icon" href="{% static 'web/img/favicon.ico' %}">
+    <link rel="image_src" href="{% static 'web/img/icon_big.png' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'web/base.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'web/mobile.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'web/tablet.css' %}" media="screen and (min-width: 620px)">
+    <link rel="stylesheet" type="text/css" href="{% static 'web/desktop.css' %}" media="screen and (min-width: 980px)">
+    <link rel="stylesheet" type="text/css" href="{% static 'web/icomoon.css' %}">
+    <script src="http://libs.baidu.com/jquery/1.7.0/jquery.js"></script>
+    <script>window.jQuery || document.write('<script src="http://libs.baidu.com/jquery/1.7.0/jquery.js"><\/script>')</script>
+    <script src="{% static 'web/js/base.js' %}"></script>
+    <script src="{% static 'web/js/plugins.js' %}"></script>
+</head>
+<body class="no-js tpl_col-two en anonymus">
+<header class="header clearfix" role="banner">
+    <div class="container_24 relative">
+        <div class="grid_24">
+
+
+
+            <h3 class="visuallyhidden">Shortcuts:</h3>
+            <ul class="hidden" role="navigation">
+                <li><a href="/" title="[Alt + 0]" accesskey="0">Go to home</a></li>
+                <li><a href="#navigation" title="[Alt + 1]" accesskey="1">Jump to navigation</a></li>
+                <li><a href="#content" title="[Alt + 2]" accesskey="2">Jump to content</a></li>
+                <li><a href="#footer" title="[Alt + 3]" accesskey="3">Contact</a></li>
+            </ul>
+            <hr class="hidden">
+
+
+            <section class="navsection">
+                <h3 class="visuallyhidden" id="navigation">Navigation:</h3>
+                <nav id="mainnav" class="mainnav clearfix" role="navigation">
+                    <ul>
+                        <li class="child child-1 first"><a href="/"><span>Home</span></a></li>
+                        {% if categoryList %}
+                            {% for category in categoryList %}
+                                <li class="child child-2"><a
+                                        href="{% url "categoryView" category.category %}"><span>{{ category.category }}</span></a>
+                                </li>
+                            {% endfor %}
+                        {% endif %}
+                    </ul>
+                </nav>
+            </section>
+        </div>
+    </div>
+</header>
+
+<div class="pagetitle clearfix">
+    <div class="container_24">
+        {# <h2>{% block h2Title %}Test official blog {% endblock %}</h2> #}
+        {% if h2Title %}
+            <h2>{{ h2Title }}</h2>
+        {% endif %}
+    </div>
+</div>
+<!-- feature -->
+<div class="feature clearfix">
+    <div class="container_24">
+    </div>
+</div>
+
+<div id="main">
+    <div class="container_24 clearfix">
+        <div class="grid_17 content">
+            {% block Content %}
+            {% endblock %}
+        </div>
+        <div class="grid_7 sidebar">
+            {% if newestPost %}
+                <div class="blog_archive box box_padding">
+                    <h2>最新文章</h2>
+                    <ul class="archive_list side_list">
+                        {% for post in newestPost %}
+                            <li><a href="{% url "detailView" post.id %}">{{ post.title }}</a></li>
+                        {% endfor %}
+
+
+                    </ul>
+                </div>
+            {% endif %}
+
+            {% if tagList %}
+                <div class="blog_tags box box_padding clearfix">
+                    <h2>Tags</h2>
+                    <ul class="tag_list">
+                        {% for tag in tagList %}
+                            <li><a class="tag" href="{% url "tagView" tag.tag %}">{{ tag.tag }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+<!-- start: footer -->
+<hr class="hidden">
+<h3 class="visuallyhidden" id="footer">Footer:</h3>
+<footer class="footer clearfix" role="contentinfo">
+    <div class="container_24">
+        <div class="grid_14 prefix_5 suffix_5 clearfix align-center">
+            <div class="grid_14 alpha align-center">
+                <ul class="footnav clearfix small">
+                    <li class="child"><a href="/en/legal/site-notice/">Site Notice</a></li>
+                </ul>
+                <span class="copyright">© 2007-2013 Divio AG. All rights reserved.</span>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- end: footer -->
+
+</body>
+</html>
