@@ -1,8 +1,7 @@
 #django-blog
 
-----------
 
-模仿https://www.django-cms.org/en/blog/写的blog程序
+模仿https://www.django-cms.org/en/blog/ 写的blog程序
 
 
 演示地址：[http://blog.shixi100.com](http://blog.shixi100.com)
