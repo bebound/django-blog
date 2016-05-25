@@ -1,7 +1,7 @@
 #django-blog
 
 
-模仿https://www.django-cms.org/en/blog/ 写的blog程序
+模仿https://www.django-cms.org/en/blog/ 写的blog程序 需要python3.5
 
 
 演示地址：[http://djangoblog.fromkk.com/](http://djangoblog.fromkk.com/)
